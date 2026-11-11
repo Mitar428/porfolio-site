@@ -1,59 +1,53 @@
 
-import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { projekti, nadjiProjekat } from "@/lib/projekti";
+import Sekcija from "@/components/sekcija";
+import ProjekatKartica from "@/components/projekatKartica";
+import { projekti } from "@/lib/projekti";
+import { Metadata } from "next";
 
-export function generateStaticParams() {
-  return projekti.map((p) => ({ slug: p.slug }));
+export const metadata:Metadata={
+    description:"Portfolio Mitra Rebica. Web developer koji uči Next.js i TypeScript."
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const projekat = nadjiProjekat(slug);
+export default function Home() {
+  const najnoviji = projekti.slice(0, 2);
 
-  return {
-    title: projekat ? projekat.naslov : "Projekat nije pronađen",
-  };
-}
-
-export default async function ProjekatStrana({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const projekat = nadjiProjekat(slug);
-
-  if (!projekat) {
-    notFound();
-  }
 
   return (
     <div>
-      <Link href="/projekti" className="underline">
-        ← Nazad na projekte
-      </Link>
+      <div className="flex items-center gap-6">
+        <Image
+          src="/profil.jpg"
+          alt="Moja fotografija"
+          width={120}
+          height={120}
+          className="rounded-full"
+        />
+        <div>
+          <h1 className="text-4xl font-bold">Zdravo, ja sam Mitar Rebic</h1>
+          <p className="mt-2 text-lg text-zinc-600">
+            Web developer koji uči Next.js i TypeScript.
+          </p>
+        </div>
+      </div>
 
-      <h1 className="mt-4 text-4xl font-bold">
-        {projekat.naslov}
-      </h1>
-
-      <p className="mt-2 text-zinc-500">
-        Godina: {projekat.godina}
-      </p>
-
-      <p className="mt-6 text-lg">
-        {projekat.opis}
-      </p>
-
-      <p className="mt-6">
-        Tehnologije: {projekat.tehnologije.join(", ")}
-      </p>
+      <Sekcija naslov="Najnoviji projekti">
+        <div className="grid gap-4 sm:grid-cols-2">
+          {najnoviji.map((p) => (
+            <ProjekatKartica
+              key={p.slug}
+              slug={p.slug}
+              naslov={p.naslov}
+              opis={p.opis}
+              tehnologije={p.tehnologije}
+            />
+          ))}
+        </div>
+        <Link href="/projekti" className="mt-6 inline-block underline">
+          Svi projekti
+        </Link>
+      </Sekcija>
     </div>
   );
 }
