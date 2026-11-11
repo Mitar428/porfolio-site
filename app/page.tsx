@@ -1,3 +1,7 @@
+
+import Footer from "@/components/footer";
+import Pozdrav from "@/components/pozdrav";
+
 export default function Home(){
   const godine:number=22; 
   <p>imam{godine} godina</p>
@@ -7,6 +11,10 @@ export default function Home(){
       <p className="mt-2 text-lg text-zinc-600">
         web developer koji uci Next js i typescript.
       </p>
+      
+       <Pozdrav />
+      <Footer/>
+     
     </div>
   )
 }
