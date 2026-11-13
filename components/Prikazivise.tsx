@@ -1,8 +1,8 @@
-"use Client";
+"use client";
 
 import { useState } from "react";
 
-export default function prikazivise(){
+export default function Prikazivise(){
     const [otvoreno,setotvoreno]=useState(false);
 
     return(

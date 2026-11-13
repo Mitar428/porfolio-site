@@ -1,3 +1,4 @@
+
 export interface Projekat{
     slug:string;
     naslov:string;
@@ -15,6 +16,7 @@ export interface Projekat{
         opis: "Online prodavnica sa korpom, nalozima i administracijom.", 
         tehnologije: ["PHP", "MySQL", "Twig","laravel","boostrap","blade"],
         godina: 2025,
+        
       },
      {
       slug: "lista-zadataka",

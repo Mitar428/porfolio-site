@@ -1,53 +1,27 @@
-
-import Image from "next/image";
-import Link from "next/link";
-import Sekcija from "@/components/sekcija";
+import type { Metadata } from "next";
 import ProjekatKartica from "@/components/projekatKartica";
 import { projekti } from "@/lib/projekti";
-import { Metadata } from "next";
 
-export const metadata:Metadata={
-    description:"Portfolio Mitra Rebica. Web developer koji uči Next.js i TypeScript."
-}
+export const metadata: Metadata = {
+  title: "Projekti",
+};
 
-export default function Home() {
-  const najnoviji = projekti.slice(0, 2);
-
-
+export default function Projekti() {
   return (
     <div>
-      <div className="flex items-center gap-6">
-        <Image
-          src="/profil.jpg"
-          alt="Moja fotografija"
-          width={120}
-          height={120}
-          className="rounded-full"
-        />
-        <div>
-          <h1 className="text-4xl font-bold">Zdravo, ja sam Mitar Rebic</h1>
-          <p className="mt-2 text-lg text-zinc-600">
-            Web developer koji uči Next.js i TypeScript.
-          </p>
-        </div>
-      </div>
+      <h1 className="text-4xl font-bold">Projekti</h1>
 
-      <Sekcija naslov="Najnoviji projekti">
-        <div className="grid gap-4 sm:grid-cols-2">
-          {najnoviji.map((p) => (
-            <ProjekatKartica
-              key={p.slug}
-              slug={p.slug}
-              naslov={p.naslov}
-              opis={p.opis}
-              tehnologije={p.tehnologije}
-            />
-          ))}
-        </div>
-        <Link href="/projekti" className="mt-6 inline-block underline">
-          Svi projekti
-        </Link>
-      </Sekcija>
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        {projekti.map((p) => (
+          <ProjekatKartica
+            key={p.slug}
+            slug={p.slug}
+            naslov={p.naslov}
+            opis={p.opis}
+            tehnologije={p.tehnologije}
+          />
+        ))}
+      </div>
     </div>
   );
 }
