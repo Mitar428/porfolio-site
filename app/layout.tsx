@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ime Prezime | Portfolio",
+    default: "Mitar Rebic Portfolio",
     template: "%s | Ime Prezime",
   },
   description: "Portfolio web developera: projekti, veštine i kontakt.",

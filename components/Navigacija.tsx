@@ -7,6 +7,7 @@ const linkovi = [
   { href: "/o-meni", tekst: "O meni" },
   { href: "/projekti", tekst: "Projekti" },
   { href: "/kontakt", tekst: "Kontakt" },
+  {href: "/usluge",tekst:"Usluge"}
 ];
 
 export default function Navigacija() {
