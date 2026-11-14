@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "O meni",
 };
 
-const vestine = ["HTML i CSS", "JavaScript", "TypeScript", "PHP", "Git i GitHub"];
+const vestine = ["HTML i CSS", "JavaScript", "TypeScript", "PHP", "Git i GitHub","cloud code"];
 
 export default function OMeni() {
   return (

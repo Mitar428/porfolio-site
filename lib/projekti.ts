@@ -32,6 +32,14 @@ export interface Projekat{
       tehnologije: ["Next.js", "TypeScript", "Tailwind"],
       godina: 2026,
     },
+
+      {
+      slug: "typescript",
+      naslov: "Typescript aplikacija",
+      opis: "Aplikacija za rezervisanje termina.",      
+      tehnologije: ["TypeScript"],
+      godina: 2026,
+    },
   ];
  
   export function nadjiProjekat(slug: string): Projekat | undefined {
