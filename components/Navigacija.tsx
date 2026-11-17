@@ -1,20 +1,21 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const linkovi = [
-  { href: "/", tekst: "Pocetna" },
+  { href: "/", tekst: "Početna" },
   { href: "/o-meni", tekst: "O meni" },
   { href: "/projekti", tekst: "Projekti" },
   { href: "/kontakt", tekst: "Kontakt" },
-  {href: "/usluge",tekst:"Usluge"}
+  { href: "/usluge", tekst: "Usluge" },
 ];
 
 export default function Navigacija() {
   const putanja = usePathname();
 
   return (
-    <nav className="flex gap-6 border-b px-8 py-4">
+    <nav className="flex flex-wrap gap-6 border-b px-8 py-4">
       {linkovi.map((link) => {
         const aktivan =
           link.href === "/"
@@ -25,13 +26,14 @@ export default function Navigacija() {
           <Link
             key={link.href}
             href={link.href}
-            className={`text-zinc-600 ${aktivan ? "font-bold text-black" : ""}`}
+            className={`text-zinc-600 ${
+              aktivan ? "font-bold text-black" : ""
+            }`}
           >
             {link.tekst}
           </Link>
         );
       })}
-      
     </nav>
   );
 }
