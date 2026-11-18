@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Sekcija from "@/components/sekcija";
 import ProjekatKartica from "@/components/projekatKartica";
-import { projekti } from "@/lib/projekti";
+import { dohvatiProjekte } from "@/lib/projekti";
 
-export default function Home() {
+export default async function Home() {
+  const projekti = await dohvatiProjekte();
   const najnoviji = projekti.slice(0, 2);
 
   return (

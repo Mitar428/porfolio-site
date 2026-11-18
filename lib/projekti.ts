@@ -1,47 +1,50 @@
-
-export interface Projekat{
-    slug:string;
-    naslov:string;
-    opis:string;
-    tehnologije: string [];
-    godina:number,
-
-
-}
-
-  export const projekti: Projekat[] = [
-       {
-       slug: "web-prodavnica",
-        naslov: "Web prodavnica",
-        opis: "Online prodavnica sa korpom, nalozima i administracijom.", 
-        tehnologije: ["PHP", "MySQL", "Twig","laravel","boostrap","blade"],
-        godina: 2025,
-        
-      },
-     {
-      slug: "lista-zadataka",
-      naslov: "Lista zadataka",
-      opis: "Aplikacija za zadatke sa dodavanjem, brisanjem i filtriranjem.",
-      tehnologije: ["JavaScript", "HTML", "CSS"],
-      godina: 2025,
-     },
-    {
-      slug: "portfolio-sajt",
-      naslov: "Portfolio sajt",
-      opis: "Ovaj sajt, napravljen u Next.js-u tokom prakse.",      
-      tehnologije: ["Next.js", "TypeScript", "Tailwind"],
-      godina: 2026,
-    },
-
-      {
-      slug: "typescript",
-      naslov: "Typescript aplikacija",
-      opis: "Aplikacija za rezervisanje termina.",      
-      tehnologije: ["TypeScript"],
-      godina: 2026,
-    },
-  ];
- 
-  export function nadjiProjekat(slug: string): Projekat | undefined {
-    return projekti.find((p) => p.slug === slug);
+import { cacheLife, cacheTag } from "next/cache";
+import { napraviJavniKlijent } from "@/lib/supabase/javni";
+   
+   export interface Projekat {
+     slug: string;
+     naslov: string;
+     opis: string;
+     tehnologije: string[];
+     godina: number;
+  }
+  
+  const KOLONE = "slug, naslov, opis, tehnologije, godina";
+  
+  // Svi projekti, najnoviji prvo
+  export async function dohvatiProjekte(): Promise<Projekat[]> {
+    "use cache";
+    cacheLife("minutes");
+    cacheTag("projekti");
+  
+    const supabase = napraviJavniKlijent();
+    const { data, error } = await supabase
+      .from("projekti")
+      .select(KOLONE)
+      .order("godina", { ascending: false })
+      .order("id", { ascending: false });
+  
+    if (error) {
+      throw new Error(`Čitanje projekata nije uspelo: ${error.message}`);
+    }
+    return (data ?? []) as Projekat[];
+  }
+  
+  // Jedan projekat po slug-u, ili null ako ga nema
+  export async function nadjiProjekat(slug: string): Promise<Projekat | null> {
+    "use cache";
+    cacheLife("minutes");
+    cacheTag("projekti");
+  
+    const supabase = napraviJavniKlijent();
+    const { data, error } = await supabase
+      .from("projekti")
+      .select(KOLONE)
+      .eq("slug", slug)
+      .maybeSingle();
+  
+    if (error) {
+      throw new Error(`Čitanje projekta nije uspelo: ${error.message}`);
+    }
+    return data as Projekat | null;
   }
