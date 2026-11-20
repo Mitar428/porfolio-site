@@ -11,7 +11,7 @@ import { napraviJavniKlijent } from "@/lib/supabase/javni";
   
   const KOLONE = "slug, naslov, opis, tehnologije, godina";
   
-  // Svi projekti, najnoviji prvo
+  
   export async function dohvatiProjekte(): Promise<Projekat[]> {
     "use cache";
     cacheLife("minutes");
@@ -30,7 +30,7 @@ import { napraviJavniKlijent } from "@/lib/supabase/javni";
     return (data ?? []) as Projekat[];
   }
   
-  // Jedan projekat po slug-u, ili null ako ga nema
+ 
   export async function nadjiProjekat(slug: string): Promise<Projekat | null> {
     "use cache";
     cacheLife("minutes");

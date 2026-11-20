@@ -1,7 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-//sluzi za prijavljivanje korisnika//
 export async function createClient() {
   const cookieStore = await cookies();
 
