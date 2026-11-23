@@ -1,29 +1,45 @@
-import type { Metadata } from "next";
-import Sekcija from "@/components/sekcija";
 
+import Image from "next/image";
+import Prikazivise from "@/components/Prikazivise";
 
-
-export const metadata: Metadata = {
-  title: "O meni",
-};
-
-const vestine = ["HTML i CSS", "JavaScript", "TypeScript", "PHP", "Git i GitHub","cloud code"];
-
-export default function OMeni() {
+export default function OMeniPage() {
   return (
-    <div>
-      <h1 className="text-4xl font-bold">O meni</h1>
-      <p className="mt-4 text-lg text-zinc-600">
-        Student sam i web developer. Trenutno sam na praksi gde učim Next.js.
-      </p>
+    <section className="container-main section-padding">
+      <div className="grid items-center gap-14 md:grid-cols-2">
+        <div className="animate-fade-up">
+          <span className="font-bold uppercase tracking-[0.25em] text-orange-500">
+            O meni
+          </span>
 
-      <Sekcija naslov="Veštine">
-        <ul className="list-disc pl-6">
-          {vestine.map((v) => (
-            <li key={v}>{v}</li>
-          ))}
-        </ul>
-      </Sekcija>
-    </div>
+          <h1 className="mt-6 text-5xl font-black sm:text-6xl">
+            Kreativnost.
+            <br />
+            Znanje.
+            <br />
+            <span className="gradient-text">Programiranje.</span>
+          </h1>
+
+          <p className="mt-7 leading-8 text-zinc-400">
+            Volim tehnologiju, programiranje i izradu modernih web aplikacija.
+            Cilj mi je da stvaram funkcionalna i kvalitetna digitalna rešenja.
+          </p>
+
+          <Prikazivise />
+        </div>
+
+        <div className="relative ml-auto w-full max-w-md md:translate-x-30">
+          <div className="absolute -inset-4 rounded-3xl bg-orange-500/20 blur-3xl" />
+          <div className="relative overflow-hidden rounded-3xl border border-white/10">
+            <Image
+              src="/profil.jpg"
+              alt="Profilna fotografija"
+              width={600}
+              height={500}
+              className="h-[300px] object-right"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
