@@ -40,8 +40,8 @@ export default function RootLayout({
           <Navigacija />
         </Suspense>
 
-        <main className="mx-auto w-full max-w-5xl flex-2 px-10 py-12">
-          {children}
+        <main className="w-full flex-1 px-4 py-12 sm:px-10">
+        {children}
         </main>
 
         <Footer />

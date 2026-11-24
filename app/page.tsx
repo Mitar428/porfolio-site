@@ -9,7 +9,7 @@ export default async function Home() {
   const najnoviji = projekti.slice(0, 2);
 
   return (
-    <main>
+    <div className="w-full px-4 py-12 sm:px-10">
       <div className="flex items-center gap-6">
         <Image
           src="/profil.jpg"
@@ -35,10 +35,12 @@ export default async function Home() {
           {najnoviji.map((p) => (
             <ProjekatKartica
               key={p.id}
+              id={p.id}
               slug={p.slug}
               naslov={p.naslov}
               opis={p.opis}
-              tehnologije={p.tehnologije} id={""}            />
+              tehnologije={p.tehnologije}
+            />
           ))}
         </div>
 
@@ -46,6 +48,6 @@ export default async function Home() {
           Svi projekti
         </Link>
       </Sekcija>
-    </main>
+    </div>
   );
 }
