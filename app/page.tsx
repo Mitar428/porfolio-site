@@ -34,12 +34,11 @@ export default async function Home() {
         <div className="grid gap-4 sm:grid-cols-2">
           {najnoviji.map((p) => (
             <ProjekatKartica
-              key={p.slug}
+              key={p.id}
               slug={p.slug}
               naslov={p.naslov}
               opis={p.opis}
-              tehnologije={p.tehnologije}
-            />
+              tehnologije={p.tehnologije} id={""}            />
           ))}
         </div>
 
