@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { connection } from "next/server";
 import Link from "next/link";
@@ -21,9 +20,6 @@ export default async function ProjektiPage() {
 
   const projekti = await dohvatiProjekte();
 
-  
- 
-
   // PROVERA DA LI JE KORISNIK ADMINISTRATOR
   const supabase = await createClient();
 
@@ -34,7 +30,7 @@ export default async function ProjektiPage() {
   const isAdmin = user?.app_metadata?.role === "admin";
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#09090b] text-white">
+    <div className="min-h-screen overflow-hidden bg-[#09090b] text-white">
 
       <section className="relative border-b border-white/10">
         <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-orange-500/10 blur-[130px]" />
@@ -235,6 +231,6 @@ export default async function ProjektiPage() {
 
       </section>
 
-    </main>
+    </div>
   );
 }
