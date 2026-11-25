@@ -11,7 +11,7 @@ const linkovi = [
   { href: "/projekti", tekst: "Projekti" },
   { href: "/kontakt", tekst: "Kontakt" },
   { href: "/usluge", tekst: "Usluge" },
-  { href: "/login", tekst: "Login" },
+ 
 ];
 
 export default function Navigacija() {

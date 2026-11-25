@@ -9,9 +9,10 @@ export interface Projekat {
   opis: string;
   tehnologije: string[];
   godina: number;
+  slika: string | null;
 }
 
-const KOLONE = "id, slug, naslov, opis, tehnologije, godina";
+const KOLONE = "id, slug, naslov, opis, tehnologije, godina, slika";
 
 export async function dohvatiProjekte(): Promise<Projekat[]> {
   "use cache";

@@ -1,6 +1,7 @@
 
 import Link from "next/link";
 import { obrisiProjekat } from "@/app/admin/novi-projekat/actions";
+import AdminKontrolerProjekta from "@/components/AdminKontrolerProjekta";
 
 interface Props {
   id: number | string;

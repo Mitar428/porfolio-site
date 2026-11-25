@@ -43,6 +43,7 @@ export default async function IzmenaProjektaPage({
   }
 
   return (
+    <main className="min-h-screen w-full bg-black text-white">
     <section className="container-main section-padding">
       <div className="mx-auto max-w-3xl">
         <div className="mb-10">
@@ -64,5 +65,6 @@ export default async function IzmenaProjektaPage({
         </div>
       </div>
     </section>
+    </main>
   );
 }

@@ -217,6 +217,7 @@ export default async function ProjektiPage() {
                     naslov={p.naslov}
                     opis={p.opis}
                     tehnologije={p.tehnologije}
+                    slika={p.slika}
                   />
 
                   {isAdmin && (

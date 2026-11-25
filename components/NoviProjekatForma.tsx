@@ -52,7 +52,31 @@ export default function NoviProjekatForma() {
         required
         className="rounded border p-2"
       />
+      <div className="space-y-3">
+  <label
+    htmlFor="slika"
+    className="block text-sm font-semibold text-white"
+  >
+    Slika projekta
+  </label>
 
+  <input
+    type="file"
+    id="slika"
+    name="slika"
+    accept="image/png,image/jpeg,image/webp"
+    className="block w-full rounded-xl border border-white/10
+    bg-white/5 p-3 text-sm text-gray-300
+    file:mr-4 file:rounded-lg file:border-0
+    file:bg-orange-500 file:px-4 file:py-2
+    file:font-semibold file:text-white
+    hover:file:bg-orange-600"
+  />
+
+  <p className="text-xs text-gray-500">
+    JPG, PNG ili WEBP. Maksimalna veličina 5 MB.
+  </p>
+</div>
       <button
         type="submit"
         disabled={salje}
