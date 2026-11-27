@@ -1,4 +1,4 @@
-export const SAJT_URL = "https://tvojdomen.rs/";
+export const SAJT_URL = "https://mitarrebic.com/";
 
 export const SAJT_IME = "Mitar Rebic";
 export const NASLOV_POCETNE = `${SAJT_IME} | Portfolio`;
