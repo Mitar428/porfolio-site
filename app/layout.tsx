@@ -1,27 +1,28 @@
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Suspense } from "react";
 import Navigacija from "@/components/Navigacija";
 import Footer from "@/components/footer";
+import { NASLOV_POCETNE, SAJT_IME, SAJT_OPIS, SAJT_URL } from "@/lib/sajt";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SAJT_URL),
   title: {
-    default: "Mitar Rebic Portfolio",
-    template: "%s | Ime Prezime",
+    default: NASLOV_POCETNE,
+    template: `%s | ${SAJT_IME}`,
   },
-  description: "Portfolio web developera: projekti, veštine i kontakt.",
+  description: SAJT_OPIS,
+  openGraph: {
+    type: "website",
+    siteName: SAJT_IME,
+    locale: "sr_RS",
+    title: NASLOV_POCETNE,
+    description: SAJT_OPIS,
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -32,20 +33,18 @@ export default function RootLayout({
   return (
     <html
       lang="sr"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      
     >
       <body className="min-h-full flex flex-col">
-
         <Suspense fallback={<div className="h-16" />}>
           <Navigacija />
         </Suspense>
 
         <main className="w-full flex-1">
-        {children}
+          {children}
         </main>
 
         <Footer />
-
       </body>
     </html>
   );

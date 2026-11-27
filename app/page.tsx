@@ -1,9 +1,37 @@
-
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 import ProjekatKartica from "@/components/projekatKartica";
+import JsonLd from "@/components/Json.Ld";
 import { dohvatiProjekte } from "@/lib/projekti";
+import { napraviMetadata } from "@/lib/seo";
+import {SAJT_IME, SAJT_OPIS, SAJT_URL, ZANIMANJE } from "@/lib/sajt";
+
+export const metadata: Metadata = napraviMetadata({ putanja: "/" });
+
+// Strukturirani podaci: ko je vlasnik sajta i šta je sajt.
+const strukturiraniPodaci = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SAJT_URL}/#sajt`,
+      url: SAJT_URL,
+      name: SAJT_IME,
+      description: SAJT_OPIS,
+      inLanguage: "sr",
+    },
+    {
+      "@type": "Person",
+      "@id": `${SAJT_URL}/#osoba`,
+      name: SAJT_IME,
+      jobTitle: ZANIMANJE,
+      url: SAJT_URL,
+      
+    },
+  ],
+};
 
 export default async function Home() {
   const projekti = await dohvatiProjekte();
@@ -11,6 +39,7 @@ export default async function Home() {
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-[#080808] text-white">
+      <JsonLd podaci={strukturiraniPodaci} />
 
       {/* POZADINSKI EFEKTI */}
       <div className="pointer-events-none absolute -top-40 right-[-10%] h-[550px] w-[550px] rounded-full bg-orange-600/[0.09] blur-[150px]" />
@@ -299,8 +328,7 @@ export default async function Home() {
                   slug={p.slug}
                   naslov={p.naslov}
                   opis={p.opis}
-                  tehnologije={p.tehnologije}
-                />
+                  tehnologije={p.tehnologije} slika={null}                />
 
               </div>
 

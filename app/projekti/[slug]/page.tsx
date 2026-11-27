@@ -3,25 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { dohvatiProjekte, nadjiProjekat } from "@/lib/projekti";
+import { napraviMetadata } from "@/lib/seo";
 
-export async function generateStaticParams() {
-  const projekti = await dohvatiProjekte();
-  return projekti.map((p) => ({ slug: p.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const projekat = await nadjiProjekat(slug);
-
-  return {
-    title: projekat ? projekat.naslov : "Projekat nije pronađen",
-    description: projekat?.opis,
-  };
-}
+export const metadata: Metadata = napraviMetadata({
+  naslov: "Projekti",
+  opis: "Pregled mojih projekata: opis, godina i korišćene tehnologije.",
+  putanja: "/projekti",
+})
 
 export default async function ProjekatStrana({
   params,

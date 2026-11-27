@@ -2,13 +2,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ProjekatKartica from "@/components/projekatKartica";
+import { dohvatiProjekte } from "@/lib/projekti";
+import { napraviMetadata } from "@/lib/seo";
 
 import Prikazivise from "@/components/Prikazivise";
 
-export const metadata: Metadata = {
-  title: "O meni | Portfolio",
-  description: "Saznaj više o meni, mom radu, programiranju i tehnologijama.",
-};
+export const metadata: Metadata = napraviMetadata({
+  naslov: "Projekti",
+  opis: "Pregled mojih projekata: opis, godina i korišćene tehnologije.",
+  putanja: "/projekti",
+});
 
 export default function OMeniPage() {
   return (

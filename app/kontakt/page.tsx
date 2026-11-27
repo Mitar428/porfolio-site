@@ -1,12 +1,15 @@
 
-import type { Metadata } from "next";
-import Link from "next/link";
-import KontaktForma from "@/components/kontaktforma";
 
-export const metadata: Metadata = {
-  title: "Kontakt | Portfolio",
-  description: "Kontaktiraj me i započnimo saradnju.",
-};
+import type { Metadata } from "next";
+import KontaktForma from "@/components/kontaktforma";
+import { napraviMetadata } from "@/lib/seo";
+import Link from "next/link";
+export const metadata: Metadata = napraviMetadata({
+  naslov: "Kontakt",
+  opis: "Pošalji mi poruku preko kontakt forme.",
+  putanja: "/kontakt",
+});
+
 
 export default function KontaktPage() {
   return (
